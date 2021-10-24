@@ -19,8 +19,10 @@ data = json.load(open("data.json", "r"))
 def English_definition(word):
     word = word.lower()
     if word in data:
+
         # try:
         return data[word]
+
     # except KeyError:
     elif word.title() in data:
         return data[word.title()]  # In case user search for word start with capital latter eg.English
@@ -57,19 +59,24 @@ def choice_menu(choice):
     print("1 English Word And Definition\n2 Swahili Word And Definition\n3 Translation Swahili to English\n\n4 Quit")
     choice = int(input("\nSelect one of the choice: "))
     while choice < 5:
+        trial = 0
 
         if choice == 1:
-            print("\n_-_-_--English Word And Definition--_--__--\n")
-            word = input("\nEnter word: ")
+            if trial < 3:
 
-            display = English_definition(word)
+                print("\n_-_-_--English Word And Definition--_--__--\n")
+                word = input("\nEnter word: ")
 
-            if type(display) == list:
+                display = English_definition(word)
 
-                for item in display:
-                    print(item)
+                if type(display) == list:
+
+                    for item in display:
+                        print(item)
+                else:
+                    print(display)
             else:
-                print(display)
+                print("Do you wish to continue!?")
         elif choice == 2:
             print("\n_-_-_--Swahili Word And Definition--_--__--\n")
             word = input("\nWeka neno la Kiswahili: ")
